@@ -15,6 +15,16 @@ Utility Preserving Trajectory Generation***
 
 ## Reproducibility & Run
 
+### Model generation
+
+...
+
+### Trajectory generation
+
+...
+
+### Use case
+
 ...
 
 ## Acknowledgement
