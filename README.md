@@ -6,7 +6,7 @@ Utility Preserving Trajectory Generation***
 ## Environment Requirements
 
 - Python >= 3.11.5
-- the requirements.txt file is included
+- The requirements.txt file is included
 
 ## Datasets
 
