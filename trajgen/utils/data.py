@@ -1,10 +1,16 @@
+
+import sys
+sys.path.append('..')
+from config import *
+
+import copy
+
 import pickle
 import numpy as np
 import pandas as pd
 
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from config import *
-from metrics import *
+
 
 def get_model_path(dataset):
     """
@@ -19,7 +25,7 @@ def get_model_path(dataset):
     This function constructs the model file path using the MODEL_FOLDER constant
     and the provided dataset name (converted to lowercase).
     """
-    return MODEL_FOLDER + "/" + "mdl-" + dataset.lower() + ".pkl"
+    return MODEL_FOLDER + "mdl-" + dataset.lower() + ".pkl"
 
 def save_pickle(data, data_path):
     """
@@ -367,3 +373,24 @@ def test_data_preparation(TRAINING_TESTING_SAME_FILE,
             Y_test[i] = Y_t[i]
 
     return X_test, Y_test, test_traj_seq_lengths
+
+
+def denormalize_data(dataset, scaler = None, normalization_ranges = None):
+    """
+        Function to denormalize the dataset using the scaler used to normalize the dataset.
+        Manual denormalization can be used for separate testing data denormalization or for denormalization of the whole dataset.
+    """
+    dataset_cpy = copy.deepcopy(dataset)
+    
+    #######
+    if scaler is None and normalization_ranges is not None:
+        X_min = normalization_ranges["min"]
+        X_max = normalization_ranges["max"]
+        
+        dataset_cpy = [arr * (X_max - X_min) + X_min for arr in dataset]
+            
+    if scaler is not None:
+        for item in range(len(dataset)):
+            dataset_cpy[item] = scaler.inverse_transform(dataset_cpy[item])
+       
+    return dataset_cpy
