@@ -17,11 +17,14 @@ Utility Preserving Trajectory Generation***
 
 ### Model generation
 
-...
+=> "training" folder
 
 ### Trajectory generation
 
-...
+=> "trajgen" folder
+
+**Step 1**. Run the trajgen-fixed-k.ipynb notebook for the targeted dataset.
+**Step 2**. Extract the values of MDE_k for various values of k (k >=1).
 
 ### Use case
 
