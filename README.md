@@ -27,6 +27,8 @@ Utility Preserving Trajectory Generation***
 
 **Step 2**. Extract the values of MDE_k for various values of k (k >=1). MDE_k values are necessary for setting up the adaptive k approach.
 
+**Step 3**. Run the trajgen-adaptive-k.ipynb notebook for generating the trajectories using the adaptive k approach.
+
 ### Use case
 
 ...
