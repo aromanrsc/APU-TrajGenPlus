@@ -18,6 +18,13 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     
     return haversine_distances([[lat1, lon1], [lat2, lon2]])[0, 1] * 6371  #Earth radius in km
 
+def haversine_distance_in_meters(lat1, lon1, lat2, lon2):
+    """
+        Compute great-circle (Haversine) distance between two lat/lon points in meters.
+        Returns the distance in km.
+    """
+    
+    return haversine_distance(lat1, lon1, lat2, lon2) * 1000  #Earth radius in meters
 
 def compute_point_to_point_haversine_distances(traj1, traj2):
     """
@@ -74,3 +81,33 @@ def compute_trajectory_metrics(X_test, Y_pred):
     results = {"IE" : errors, "ISE" : squared_errors, "MSE" : mses, "ED" : eds}
     
     return results
+
+def exponential_moving_average_haversine(traj1, traj2, alpha=0.3):
+    """
+    Compute the Exponential Moving Average (EMA) of the point-to-point Haversine distances
+    between two trajectories.
+
+    Parameters:
+        alpha (float): The smoothing factor, 0 < alpha <= 1. Higher alpha discounts older observations faster.
+
+    Returns:
+        list: The EMA values for the Haversine distances.
+    """
+    # Compute point-to-point Haversine distances
+    distances = compute_point_to_point_haversine_distances(traj1, traj2)
+    
+    # Initialize EMA list
+    ema = []
+    
+    # Compute EMA iteratively
+    for i, dist in enumerate(distances):
+        if i == 0:
+            # First EMA value is the first distance
+            ema.append(dist)
+        else:
+            # Apply EMA formula
+            ema_value = alpha * dist + (1 - alpha) * ema[-1]
+            ema.append(ema_value)
+    
+    return ema
+
