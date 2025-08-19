@@ -23,7 +23,7 @@ Utility Preserving Trajectory Generation***
 
 => "trajgen" folder
 
-**Step 0**. Generate the test data files with the [trajgen-generate-data](trajgen/trajgen-generate-data.ipynb) notebook for the targeted dataset.
+**Step 0**. Generate the test data files using the [trajgen-generate-data](trajgen/trajgen-generate-data.ipynb) notebook, for the targeted dataset.
 
 **Step 1**. Run the [trajgen-fixed-k](trajgen/trajgen-fixed-k.ipynb) notebook for the targeted dataset.
 
