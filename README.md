@@ -23,6 +23,8 @@ Utility Preserving Trajectory Generation***
 
 => "trajgen" folder
 
+**Step 0**. Generate the test data files with the [trajgen-generate-data](trajgen/trajgen-generate-data.ipynb) notebook for the targeted dataset.
+
 **Step 1**. Run the [trajgen-fixed-k](trajgen/trajgen-fixed-k.ipynb) notebook for the targeted dataset.
 
 **Step 2**. Extract the values of MDE_k for various values of k (k >=1). MDE_k values are necessary for setting up the adaptive k approach.
