@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from utils.metrics import *
 
 
 def get_model_path(dataset):
@@ -412,3 +413,32 @@ def min_max_normalize_third_column(data):
         traj_copy.iloc[:, 2] = (traj_copy.iloc[:, 2] - min_val) / (max_val - min_val)
         normalized_data.append(traj_copy)
     return normalized_data
+
+def add_speed_column(Y_pred_k, time_diff_seconds):
+    """
+    Adds a 'speed' column to each predicted trajectory in Y_pred_k, assuming constant time difference.
+    Y_pred_k: list of np.ndarray, each of shape (n_points, 2) with columns [lat, lon]
+    time_diff_seconds: scalar, time difference in seconds between each point (constant for all)
+    Returns: list of np.ndarray, each of shape (n_points, 3) with columns [lat, lon, speed]
+    """
+
+    Y_pred_k_with_speed = []
+    for traj in Y_pred_k:
+        lats = traj[:, 0]
+        lons = traj[:, 1]
+        n = len(lats)
+        lat_next = np.roll(lats, 1)
+        lon_next = np.roll(lons, 1)
+        lat_next[0] = 0.0
+        lon_next[0] = 0.0
+
+        distances = np.full(n, 0.0, dtype=np.float32)
+        speeds = np.full(n, 0.0, dtype=np.float32)
+
+        for i in range(1, n):
+            distances[i] = haversine_distance(lats[i], lons[i], lat_next[i], lon_next[i])
+            speeds[i] = distances[i] / (time_diff_seconds / 3600) if time_diff_seconds > 0 else 0
+
+        traj_with_speed = np.column_stack((lats, lons, speeds))
+        Y_pred_k_with_speed.append(traj_with_speed)
+    return Y_pred_k_with_speed
