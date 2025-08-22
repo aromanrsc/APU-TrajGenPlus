@@ -394,3 +394,21 @@ def denormalize_data(dataset, scaler = None, normalization_ranges = None):
             dataset_cpy[item] = scaler.inverse_transform(dataset_cpy[item])
        
     return dataset_cpy
+
+
+def min_max_normalize_third_column(data):
+    # Concatenate all third columns to find global min and max
+    all_third = np.concatenate([traj.iloc[:, 2].values for traj in data])
+    min_val = np.min(all_third)
+    max_val = np.max(all_third)
+    # Avoid division by zero
+    if max_val == min_val:
+        max_val += 1e-8
+
+    # Normalize the third column for each trajectory
+    normalized_data = []
+    for traj in data:
+        traj_copy = traj.copy()
+        traj_copy.iloc[:, 2] = (traj_copy.iloc[:, 2] - min_val) / (max_val - min_val)
+        normalized_data.append(traj_copy)
+    return normalized_data
