@@ -33,7 +33,7 @@ Utility Preserving Trajectory Generation***
 
 **Step 4**. Compute privacy and utility metrics using the [trajgen-metrics-computation](trajgen/trajgen-metrics-computation.ipynb) notebook.
 
-**Step 5**. Attack resilience: reconstruct trajectories ([trajgen-reconstruction](trajgen/trajgen-reconstruction.ipynb).
+**Step 5**. Attack resilience: reconstruct trajectories ([trajgen-reconstruction](trajgen/trajgen-reconstruction.ipynb)).
 
 ### Use case
 
