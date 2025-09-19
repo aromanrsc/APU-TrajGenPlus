@@ -53,6 +53,6 @@ Any scientific publications that use our data or code should mention the followi
   volume={13},
   number={},
   pages={160081-160102},
-  keywords={Trajectory;Privacy;Logic gates;Data privacy;Data models;Protection;Real-time systems;Mathematical models;Training;Computational modeling;Location data privacy;trajectory protection;trajectory generation;real-time trajectory release;data utility;traffic management systems},
+  keywords={Trajectory;Privacy;Data privacy;Data models;Protection;Real-time systems;Location data privacy;trajectory protection;trajectory generation;real-time trajectory release;data utility;traffic management systems},
   doi={10.1109/ACCESS.2025.3609406}}
 ```
