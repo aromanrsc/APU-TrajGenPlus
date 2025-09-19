@@ -42,4 +42,14 @@ trajectories ([trajgen-reconstruction](trajgen/trajgen-reconstruction.ipynb)) an
 
 ## Acknowledgement
 
-Any scientific publications that use our data or code should mention the article and/or this git.
+Any scientific publications that use our data or code should mention the following article:
+
+```
+@article{roman2025apu,
+  title={APU-TrajGen+: GRU-based Adaptive Privacy and Utility Preserving Trajectory Generation},
+  author={Roman, Adrian-Silviu and Bolboac{\u{a}}, Roland and Lenard, Teri and Haller, Piroska},
+  journal={IEEE Access},
+  year={2025},
+  publisher={IEEE}
+}
+```
