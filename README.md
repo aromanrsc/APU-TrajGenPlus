@@ -45,11 +45,14 @@ trajectories ([trajgen-reconstruction](trajgen/trajgen-reconstruction.ipynb)) an
 Any scientific publications that use our data or code should mention the following article:
 
 ```
-@article{roman2025apu,
-  title={APU-TrajGen+: GRU-based Adaptive Privacy and Utility Preserving Trajectory Generation},
-  author={Roman, Adrian-Silviu and Bolboac{\u{a}}, Roland and Lenard, Teri and Haller, Piroska},
-  journal={IEEE Access},
+@ARTICLE{11162526,
+  author={Roman, Adrian-Silviu and Bolboacă, Roland and Lenard, Teri and Haller, Piroska},
+  journal={IEEE Access}, 
+  title={APU-TrajGen+: GRU-Based Adaptive Privacy and Utility Preserving Trajectory Generation}, 
   year={2025},
-  publisher={IEEE}
-}
+  volume={13},
+  number={},
+  pages={160081-160102},
+  keywords={Trajectory;Privacy;Logic gates;Data privacy;Data models;Protection;Real-time systems;Mathematical models;Training;Computational modeling;Location data privacy;trajectory protection;trajectory generation;real-time trajectory release;data utility;traffic management systems},
+  doi={10.1109/ACCESS.2025.3609406}}
 ```
