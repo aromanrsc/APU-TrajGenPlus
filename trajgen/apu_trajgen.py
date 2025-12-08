@@ -120,6 +120,9 @@ def apu_trajgen_adaptive_k(mdl,
         # Initialize Y_preds[i] as an empty list to store predictions step by step
         Y_preds[i] = []
         
+        real_points = []
+        pred_points = []
+        
         # For each point in the trajectory, we need to predict the next point
         for j in range(test_traj_seq_lengths[i]):
             
@@ -137,6 +140,12 @@ def apu_trajgen_adaptive_k(mdl,
                 # Denormalize the real point and the predicted point to compute the SU score
                 x_t_dn = denormalize_data(X_t_ij[:,:,0:2], normalization_ranges=normalization_ranges)
                 y_pred_dn = denormalize_data(Y_preds[i][j-1], normalization_ranges=normalization_ranges) #use the previous predicted point
+                
+                real_points.append(x_t_dn)
+                pred_points.append(y_pred_dn)
+                
+                su_funct_args["real_points"] = real_points
+                su_funct_args["pred_points"] = pred_points
                 # y_pred_dn = denormalize_data(y_pred, scaler) #use the previous predicted point
                 
                 # Compute the distance between the real point and the predicted point
@@ -205,6 +214,30 @@ def compute_su_score1(real_point, pred_point, su_funct_args):
         and normalizes it using the selected mean values (see the paper for details)
     """
     
+    # Extract latitude and longitude
+    lat1, lon1 = real_point[0][0][0], real_point[0][0][1]
+    lat2, lon2 = pred_point[0][0][0], pred_point[0][0][1]
+
+    # Compute the haversine distance
+    dist = haversine_distance_in_meters(lat1, lon1, lat2, lon2)
+    
+    # Compute the SU score
+    score = (dist - su_funct_args['mean_min']) / (su_funct_args['mean_max'] - su_funct_args['mean_min'])
+    
+    return score
+
+# Function that computes the SU score for two partial trajectories
+def compute_su_score2(real_point, pred_point, su_funct_args):
+    """
+        Compute the SU score for two partial trajectories
+        In this case the score computes the distance between the two points
+        and normalizes it using the selected mean values (see the paper for details)
+    """
+    
+    real_points = su_funct_args["real_points"]
+    pred_points = su_funct_args["pred_points"]
+    
+    # ...
     # Extract latitude and longitude
     lat1, lon1 = real_point[0][0][0], real_point[0][0][1]
     lat2, lon2 = pred_point[0][0][0], pred_point[0][0][1]
