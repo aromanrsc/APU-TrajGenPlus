@@ -38,7 +38,7 @@ trajectories ([trajgen-reconstruction](trajgen/trajgen-reconstruction.ipynb)).
 
 ### Use case
 
-...
+(to be added)
 
 ## Acknowledgement
 
